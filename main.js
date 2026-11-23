@@ -1,7 +1,8 @@
 const { app, BrowserWindow, shell, Menu } = require('electron');
 const path = require('path');
 
-const SITE = 'https://www.bgeducatif.men/?app=exe';
+const BASE_URL = 'https://www.bgeducatif.men';
+const START_URL = 'https://www.bgeducatif.men/?app=exe';
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -11,19 +12,19 @@ function createWindow() {
     minHeight: 600,
     title: 'BG Éducatif',
     autoHideMenuBar: true,
-  webPreferences: {
-  partition: 'persist:bgeducatif',
-  nodeIntegration: false,
-  contextIsolation: true
-}
+    webPreferences: {
+      partition: 'persist:bgeducatif',
+      nodeIntegration: false,
+      contextIsolation: true
+    }
   });
 
   Menu.setApplicationMenu(null);
-  win.loadURL(SITE);
+  win.loadURL(START_URL);
 
-  // روابط خارجية (واتساب وغيره) تُفتح في المتصفح الافتراضي
+  // الروابط الداخلية تبقى داخل البرنامج، والخارجية (واتساب وغيره) تُفتح في المتصفح الافتراضي
   win.webContents.setWindowOpenHandler(({ url }) => {
-    if (url.startsWith(SITE)) return { action: 'allow' };
+    if (url.startsWith(BASE_URL)) return { action: 'allow' };
     shell.openExternal(url);
     return { action: 'deny' };
   });
