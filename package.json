@@ -1,0 +1,17 @@
+{
+  "name": "bgeducatif-desktop",
+  "version": "1.0.0",
+  "description": "BG Éducatif — تطبيق سطح المكتب",
+  "author": "BG Éducatif",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win"
+  },
+  "build": {
+    "appId": "men.bgeducatif.desktop",
+    "productName": "BG Educatif",
+    "files": ["main.js", "offline.html"],
+    "win": { "target": "nsis" }
+  }
+}
