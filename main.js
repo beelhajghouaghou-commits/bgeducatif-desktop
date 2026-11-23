@@ -1,7 +1,7 @@
 const { app, BrowserWindow, shell, Menu } = require('electron');
 const path = require('path');
 
-const SITE = 'https://www.bgeducatif.men';
+const SITE = 'https://www.bgeducatif.men/?app=exe';
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -11,7 +11,11 @@ function createWindow() {
     minHeight: 600,
     title: 'BG Éducatif',
     autoHideMenuBar: true,
-    webPreferences: { contextIsolation: true, nodeIntegration: false, sandbox: true }
+  webPreferences: {
+  partition: 'persist:bgeducatif',
+  nodeIntegration: false,
+  contextIsolation: true
+}
   });
 
   Menu.setApplicationMenu(null);
